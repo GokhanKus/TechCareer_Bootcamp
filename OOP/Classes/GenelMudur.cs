@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP.Classes
 {
-    internal class GenelMudur
+    internal class GenelMudur : Calisan
     {
+        public override int Maasi()
+        {
+            return 70000;
+        }
     }
 }

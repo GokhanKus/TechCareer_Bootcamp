@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP.Classes
 {
-    internal class Stajyer
+    internal class Stajyer : Calisan
     {
+        public override int Maasi()
+        {
+            return 10000;
+        }
     }
 }

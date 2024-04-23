@@ -13,7 +13,11 @@ namespace OOP.Classes
         public string Soyadi{ get; set; }
         public string FullIsmi => $"{Adi} {Soyadi}";
         public string Departmani{ get; set; }
-        public int CalisaninMaasi(int maas)
+        public virtual int Maasi()
+        {
+            return 0;
+        }
+        public int CalisaninMaaslarToplami(int maas)
         {
             return maas;
         }

@@ -8,6 +8,6 @@ namespace OOP.Interfaces
 {
     internal interface ICalisan
     {
-        int CalisaninMaasi(int maas);
+        int CalisaninMaaslarToplami(int maas);
     }
 }
