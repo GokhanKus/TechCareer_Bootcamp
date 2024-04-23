@@ -51,6 +51,8 @@
     <Compile Include="Interfaces\ICalisan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflections\ClassExample.cs" />
+    <Compile Include="Reflections\MyReflectionClass.cs" />
     <Compile Include="Solid\LoglamaYontemleriIyiKod\DbLog.cs" />
     <Compile Include="Solid\LoglamaYontemleriIyiKod\ILogger.cs" />
     <Compile Include="Solid\LoglamaYontemleriIyiKod\Logger.cs" />
