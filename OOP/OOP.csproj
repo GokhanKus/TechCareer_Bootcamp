@@ -51,9 +51,22 @@
     <Compile Include="Interfaces\ICalisan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solid\OdemeYontemleriIyıKod\IOdemeType.cs" />
+    <Compile Include="Solid\OdemeYontemleriIyıKod\Iyzico.cs" />
+    <Compile Include="Solid\OdemeYontemleriIyıKod\KrediKarti.cs" />
+    <Compile Include="Solid\OdemeYontemleriIyıKod\MailOrder.cs" />
+    <Compile Include="Solid\OdemeYontemleriIyıKod\OdemeIslemi.cs" />
+    <Compile Include="Solid\OdemeYontemleriKotuKod\OdemeTypeK.cs" />
+    <Compile Include="Solid\OdemeYontemleriKotuKod\OdemeIslemiK.cs" />
+    <Compile Include="Solid\OdemeYontemleriKotuKod\MailOrderK.cs" />
+    <Compile Include="Solid\OdemeYontemleriKotuKod\KrediKartiK.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Solid\OpenClosedIyiKod\" />
+    <Folder Include="Solid\OpenClosedKotuKod\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
