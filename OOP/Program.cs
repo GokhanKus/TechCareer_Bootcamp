@@ -1,4 +1,6 @@
 ﻿using OOP.Classes;
+using OOP.Solid.LoglamaYontemleriIyiKod;
+using OOP.Solid.LoglamaYontemleriKotuKod;
 using OOP.Solid.OdemeYontemleriIyıKod;
 using OOP.Solid.OdemeYontemleriKotuKod;
 using System;
@@ -31,19 +33,33 @@ namespace OOP
             //Console.WriteLine("calisanlarin maas toplami" + " " + maasToplami);
             #endregion
 
-            #region Solid(Open Closed Kotu Kod)
+            #region Solid(Open Closed Kotu Kod) 1
             OdemeIslemiK odeme1 = new OdemeIslemiK(new KrediKartiK(),new MailOrderK());
             odeme1.OdemeYapK(OdemeTypeK.KrediKartiK,2555);
 
             #endregion
 
-            #region Solid(Open Closed Iyi Kod)
+            #region Solid(Open Closed Iyi Kod) 1
             OdemeIslemi odeme2 = new OdemeIslemi(new KrediKarti());
             OdemeIslemi odeme3 = new OdemeIslemi(new Iyzico());
             OdemeIslemi odeme4 = new OdemeIslemi(new MailOrder());
             odeme2.OdemeYap(555);
             odeme3.OdemeYap(111);
             odeme4.OdemeYap(222);
+            #endregion
+
+            #region Solid(Open Closed Kotu Kod) 2
+            LoggerK kayit1 = new LoggerK(new XmlLogK(), new TextLogK());
+            kayit1.KayitEt(LogTypeK.TextLog, "text log icin mesaj");
+            #endregion
+
+            #region Solid(Open Closed Iyi Kod) 2
+            Logger kayit2 = new Logger(new XmlLog()); 
+            Logger kayit3 = new Logger(new DbLog()); 
+            Logger kayit4 = new Logger(new TextLog());
+            kayit2.KayitEtmeIslemi("mesaj1");
+            kayit3.KayitEtmeIslemi("mesaj2");
+            kayit4.KayitEtmeIslemi("mesaj3");
             #endregion
 
         }
