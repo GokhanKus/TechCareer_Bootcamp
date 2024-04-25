@@ -128,6 +128,39 @@ namespace Stack_Heap
             Console.WriteLine(metin2);
             #endregion
 
+            #region HashTable, Dictionary, LinkedList
+
+            Hashtable ht = new Hashtable();
+            ht.Add(1, "bir");
+            ht.Add("bir", "one");
+            ht.Add("one", "uno");
+            ht.Add("uno", 1);
+
+            //Bu da heap'e ornek verilebilir; non primitive, referans tipli, generic1 ve generic2 degerleri ayni
+            Dictionary<int, string> dic1 = new Dictionary<int, string>();
+            dic1.Add(1, "bir");
+            dic1.Add(2, "iki");
+            dic1.Add(3, "uc");
+            dic1.Add(4, "dort");
+
+            Dictionary<int, string> dic2 = dic1;
+            dic1.Add(5, "bes");
+            dic1[1] = "yuz";    //key degeri 1 olan deger varsa yuz olarak degistir yoksa keyi 1 olan value'si "yuz" olan yeni deger ekle
+
+
+            //Bu da heap'e ornek verilebilir; non primitive, referans tipli, generic1 ve generic2 degerleri ayni
+            LinkedList<int> generic1 = new LinkedList<int>();
+            for (int i = 0; i < 5; i++)
+            {
+                generic1.AddFirst(i);
+            }
+
+            //LinkedListler, bir diziye göre daha dinamik bir yapı sunar çünkü her eleman, kendisinden önceki ve sonraki elemanın referansını içerir
+            LinkedList<int> generic2 = generic1;
+            LinkedListNode<int> node = generic1.First;
+            node.Value = 100;
+
+            #endregion
         }
     }
 }
