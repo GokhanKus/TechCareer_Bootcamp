@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP\OOP.csproj", "{E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stack&Heap", "Stack&Heap\Stack&Heap.csproj", "{B15A94F3-142F-40D9-BDA3-3129FADF83D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeOrnek", "AttributeOrnek\AttributeOrnek.csproj", "{1B2F3916-CEA5-415F-B959-FA57D10940B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B15A94F3-142F-40D9-BDA3-3129FADF83D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B15A94F3-142F-40D9-BDA3-3129FADF83D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B15A94F3-142F-40D9-BDA3-3129FADF83D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2F3916-CEA5-415F-B959-FA57D10940B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2F3916-CEA5-415F-B959-FA57D10940B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2F3916-CEA5-415F-B959-FA57D10940B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2F3916-CEA5-415F-B959-FA57D10940B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
