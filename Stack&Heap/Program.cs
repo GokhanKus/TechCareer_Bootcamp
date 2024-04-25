@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,46 @@ namespace Stack_Heap
             int sayi4 = 10;
             object o2 = sayi4;   //boxing (int'ten object'e) deger turunden referans turune donusum.
 
+            #endregion
+
+            #region Stack & Heap
+
+            /*
+			Stack ve heap ram uzerinde olan 2 alandır stack alaninda yerel degiskenler(int, byte, double vs..) saklanirken;		  Stack ==> Statik yapi (genisletilemez, sabit)
+			Heapte ise büyük veri yapılarının veya nesneler saklanir (orn class'tan birr nesne olusturulunca o nesnenin verileri, objects, dynamic, Strings, class, delegate..) Heap  ==> Dinamik yapi (esnek yapida genisletilebilir)
+			User u1 = new User1() dedigimizde Heap'te bu saklanirken Stack bolgesinde u1 adinda 534634 gibi bir ref numarasiyla heapteki o bolgeyi isaret eder
+			
+			Stack, programın çalışma zamanında derleyicinin yönettiği ve kullandığı bellek alanıdır.
+			Stack ve heap, bellek yönetimiyle ilgili terimlerdir ve programın çalışma zamanında bellekte veri depolamanın farklı yollarını ifade ederler.
+			Stack, son giren ilk çıkar (LIFO - Last In, First Out) mantığına göre çalışır. ust uste biriken bulasık tabaklar ornek olarak verilebilir
+			Stack, Bellek alanı, compile-time'da tahsis edilir ve belirlenen bir boyutta sabittir.
+
+			Heap, programın çalışma zamanında dinamik olarak tahsis edilen bellek alanıdır.
+			Heap, özellikle nesnelerin ve büyük veri yapılarının saklanması için kullanılır.
+			Bellek yönetimi programcı tarafından yapılır ve bellekten ayrılmış alanlar işaretçiler (pointers) ile yönetilir.
+			Heap, kullanılan bellek miktarına bağlı olarak büyüyebilir veya küçülebilir.
+            */
+
+            //primitive(ilkel, basit), static, deger tipli(referans tipli değil) a ve b degerleri farklı, stack'te saklanir.
+            int a = 5;
+            int b = a;
+            a = 10;
+            Console.WriteLine($"a: {a}, b: {b}");
+
+            //non primitive, referans tipli dizi1 ve dizi2 degerleri ayni, dizi2[0] degeri de 100 oldu
+            int[] dizi1 = { 1, 2, 3, 4, 5, 6 };
+            int[] dizi2 = dizi1;
+            dizi1[0] = 100;
+            Console.WriteLine("Dizi1\t\tDizi2");
+            for (int i = 0; i < dizi1.Length; i++)
+            {
+                Console.Write($"{dizi1[i]}\t\t{dizi2[i]}\n");
+            }
+            //baska bir ornek: u2'nin adi ve soyadinin da degistigini gorecegiz; cunku u2, u1'in bellekteki konumunu isaret eder
+            User u1 = new User { Adi = "Irmak", Soyadi = "Deniz" };
+            User u2 = u1;
+            u1.Adi = "Okyanus"; u1.Soyadi = "Su";
+            Console.WriteLine($"u1 adi: {u1.Adi}, u1 soyadi: {u1.Soyadi} \nu2 adi: {u2.Adi}, u2 soyadi: {u2.Soyadi}");
             #endregion
         }
     }
