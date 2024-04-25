@@ -91,6 +91,43 @@ namespace Stack_Heap
             u1.Adi = "Okyanus"; u1.Soyadi = "Su";
             Console.WriteLine($"u1 adi: {u1.Adi}, u1 soyadi: {u1.Soyadi} \nu2 adi: {u2.Adi}, u2 soyadi: {u2.Soyadi}");
             #endregion
+
+            #region Stack, Queue
+            /*
+            Stack, çağrı yığını(call stack) gibi senaryolarda kullanılır.
+            Queue, işlem kuyrukları(task queue) gibi senaryolarda kullanılır.
+            */
+            Stack stack = new Stack();
+            stack.Push("gokhan");
+            stack.Push("is");
+            stack.Push("name");
+            stack.Push("my");
+            stack.Push("hello");
+            //stack.Pop(); //son eklenen deger kaldirilir("hello")
+            string metin1 = "";
+            while (stack.Count > 0)
+            {
+                metin1 += stack.Pop() + " ";
+            }
+            Console.WriteLine(metin1);
+
+            Console.WriteLine("------------");
+
+            Queue queue = new Queue();
+            queue.Enqueue("hello");
+            queue.Enqueue("my");
+            queue.Enqueue("name");
+            queue.Enqueue("is");
+            queue.Enqueue("gokhan");
+            //queue.Dequeue();//ilk eklenen deger kaldirilir ("hello")
+            string metin2 = "";
+            while (queue.Count > 0)
+            {
+                metin2 += queue.Dequeue() + " ";
+            }
+            Console.WriteLine(metin2);
+            #endregion
+
         }
     }
 }
