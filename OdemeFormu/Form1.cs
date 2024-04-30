@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace OdemeFormu
@@ -9,7 +10,11 @@ namespace OdemeFormu
     public partial class Form1 : Form
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=TechCareer; Integrated Security=True;";
-        private string odemeYontemiAdi;
+        private string odemeYontemiAdi; // == Class'in adina esittir.
+
+        OdemeYontemi odemeIslemi;
+        OdemeIslemiFactory factory;
+        IOdemeYontemi odeme;
         public Form1()
         {
             InitializeComponent();
@@ -21,19 +26,30 @@ namespace OdemeFormu
         private void btnOdemeYap_Click(object sender, EventArgs e)
         {
             #region Open Closed ve Reflection 
+            //Type odemeYontemiTuru = Type.GetType("OdemeFormu.OdemeYontemleri." + odemeYontemiAdi);
+            //if (odemeYontemiTuru != null)
+            //{
+            //    IOdemeYontemi secilenOdemeYontemi = (IOdemeYontemi)Activator.CreateInstance(odemeYontemiTuru); //cmbbox'tan secilen odeme yonteminden bir nesne ornegi..
+            //    OdemeYontemi odeme = new OdemeYontemi(secilenOdemeYontemi);
+            //    lblSonuc.Text = odeme.Ode(int.Parse(txtTutar.Text));
+            //}
+            //else
+            //{
+            //    lblSonuc.Text = "boyle bir odeme yontemi eklenmemistir";
+            //}
+            #endregion
 
-            Type odemeYontemiTuru = Type.GetType("OdemeFormu.OdemeYontemleri." + odemeYontemiAdi);
-            if (odemeYontemiTuru != null)
+            #region  Open Closed, Reflection With Factory Design
+
+            factory = new OdemeIslemiFactory();
+            odeme = factory.GenerateInstance(odemeYontemiAdi);
+            if (odeme != null)
             {
-                IOdemeYontemi secilenOdemeYontemi = (IOdemeYontemi)Activator.CreateInstance(odemeYontemiTuru); //cmbbox'tan secilen odeme yonteminden bir nesne ornegi..
-                OdemeYontemi odeme = new OdemeYontemi(secilenOdemeYontemi);
-                lblSonuc.Text = odeme.Ode(int.Parse(txtTutar.Text));
+                odemeIslemi = new OdemeYontemi(odeme);
+                lblSonuc.Text = odeme.OdemeIslemi(int.Parse(txtTutar.Text));
             }
             else
-            {
-                lblSonuc.Text = "boyle bir odeme yontemi eklenmemistir";
-            }
-
+                lblSonuc.Text = $"{odemeYontemiAdi} ile odeme yontemi henuz eklenmemistir.";
             #endregion
         }
 

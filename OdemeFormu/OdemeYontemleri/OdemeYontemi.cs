@@ -13,9 +13,9 @@ namespace OdemeFormu.OdemeYontemleri
         {
             _odemeYontemi = odemeYontemi;
         }
-        public string Ode(int tutar)
-        {
-            return _odemeYontemi.OdemeIslemi(tutar);
-        }
+        //public string Ode(int tutar) //burasi Open Closed ve Reflection icin kullaniliyordu, factory design ile burasi yok artik.
+        //{
+        //    return _odemeYontemi.OdemeIslemi(tutar);
+        //}
     }
 }

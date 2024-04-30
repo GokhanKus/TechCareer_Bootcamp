@@ -55,6 +55,7 @@
     <Compile Include="OdemeYontemleri\IOdemeYontemi.cs" />
     <Compile Include="OdemeYontemleri\KrediKarti.cs" />
     <Compile Include="OdemeYontemleri\MailOrder.cs" />
+    <Compile Include="OdemeYontemleri\OdemeIslemiFactory.cs" />
     <Compile Include="OdemeYontemleri\OdemeTipi.cs" />
     <Compile Include="OdemeYontemleri\OdemeYontemi.cs" />
     <Compile Include="OdemeYontemleri\Paypal.cs" />
