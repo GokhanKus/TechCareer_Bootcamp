@@ -42,6 +42,7 @@
             cmbYayinEvi = new ComboBox();
             cmbYazar = new ComboBox();
             dataGridView1 = new DataGridView();
+            btnSil = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -137,6 +138,7 @@
             cmbKategori.Name = "cmbKategori";
             cmbKategori.Size = new Size(121, 23);
             cmbKategori.TabIndex = 3;
+            cmbKategori.SelectedIndexChanged += cmbKategori_SelectedIndexChanged;
             // 
             // cmbYayinEvi
             // 
@@ -145,6 +147,7 @@
             cmbYayinEvi.Name = "cmbYayinEvi";
             cmbYayinEvi.Size = new Size(121, 23);
             cmbYayinEvi.TabIndex = 3;
+            cmbYayinEvi.SelectedIndexChanged += cmbYayinEvi_SelectedIndexChanged;
             // 
             // cmbYazar
             // 
@@ -153,6 +156,7 @@
             cmbYazar.Name = "cmbYazar";
             cmbYazar.Size = new Size(121, 23);
             cmbYazar.TabIndex = 3;
+            cmbYazar.SelectedIndexChanged += cmbYazar_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
@@ -162,11 +166,22 @@
             dataGridView1.Size = new Size(706, 228);
             dataGridView1.TabIndex = 4;
             // 
+            // btnSil
+            // 
+            btnSil.Location = new Point(522, 50);
+            btnSil.Name = "btnSil";
+            btnSil.Size = new Size(92, 51);
+            btnSil.TabIndex = 5;
+            btnSil.Text = "Sil";
+            btnSil.UseVisualStyleBackColor = true;
+            btnSil.Click += btnSil_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(786, 450);
+            Controls.Add(btnSil);
             Controls.Add(dataGridView1);
             Controls.Add(cmbYazar);
             Controls.Add(cmbYayinEvi);
@@ -183,6 +198,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -204,5 +220,6 @@
         private ComboBox cmbYayinEvi;
         private ComboBox cmbYazar;
         private DataGridView dataGridView1;
+        private Button btnSil;
     }
 }

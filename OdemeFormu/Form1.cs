@@ -83,6 +83,7 @@ namespace OdemeFormu
                     cmbOdemeTipi.DataSource = odemeTipleri;
                     cmbOdemeTipi.DisplayMember = "DisplayName";
                     cmbOdemeTipi.ValueMember = "ClassName";
+                    reader.Close();
                 }
                 catch (Exception ex)
                 {
