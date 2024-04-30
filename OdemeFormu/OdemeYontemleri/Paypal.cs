@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OdemeFormu.OdemeYontemleri
 {
-    internal class Paypal
+    internal class Paypal : IOdemeYontemi
     {
+        public string OdemeIslemi(int tutar)
+        {
+            return $"Paypal ile {tutar} tutarinda odeme yapildi";
+        }
     }
 }

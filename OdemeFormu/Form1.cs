@@ -1,13 +1,7 @@
 ﻿using OdemeFormu.OdemeYontemleri;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OdemeFormu
@@ -15,14 +9,32 @@ namespace OdemeFormu
     public partial class Form1 : Form
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=TechCareer; Integrated Security=True;";
+        private string odemeYontemiAdi;
         public Form1()
         {
             InitializeComponent();
         }
-
+        private void cmbOdemeTipi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            odemeYontemiAdi = cmbOdemeTipi.SelectedValue.ToString();
+        }
         private void btnOdemeYap_Click(object sender, EventArgs e)
         {
+            #region Open Closed ve Reflection 
 
+            Type odemeYontemiTuru = Type.GetType("OdemeFormu.OdemeYontemleri." + odemeYontemiAdi);
+            if (odemeYontemiTuru != null)
+            {
+                IOdemeYontemi secilenOdemeYontemi = (IOdemeYontemi)Activator.CreateInstance(odemeYontemiTuru); //cmbbox'tan secilen odeme yonteminden bir nesne ornegi..
+                OdemeYontemi odeme = new OdemeYontemi(secilenOdemeYontemi);
+                lblSonuc.Text = odeme.Ode(int.Parse(txtTutar.Text));
+            }
+            else
+            {
+                lblSonuc.Text = "boyle bir odeme yontemi eklenmemistir";
+            }
+
+            #endregion
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,5 +79,7 @@ namespace OdemeFormu
                 }
             }
         }
+
+        
     }
 }

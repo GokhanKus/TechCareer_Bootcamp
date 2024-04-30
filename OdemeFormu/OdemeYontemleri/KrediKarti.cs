@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OdemeFormu.OdemeYontemleri
 {
-    internal class KrediKarti
+    internal class KrediKarti: IOdemeYontemi
     {
+        public string OdemeIslemi(int tutar)
+        {
+            return $"KrediKarti ile {tutar} tutarinda odeme yapildi";
+        }
     }
 }

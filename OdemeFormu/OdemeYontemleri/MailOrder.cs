@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OdemeFormu.OdemeYontemleri
 {
-    internal class MailOrder
+    internal class MailOrder: IOdemeYontemi
     {
+        public string OdemeIslemi(int tutar)
+        {
+            return $"MailOrder ile {tutar} tutarinda odeme yapildi";
+        }
     }
 }

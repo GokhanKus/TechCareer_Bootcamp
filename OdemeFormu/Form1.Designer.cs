@@ -70,6 +70,7 @@
             this.cmbOdemeTipi.Name = "cmbOdemeTipi";
             this.cmbOdemeTipi.Size = new System.Drawing.Size(121, 21);
             this.cmbOdemeTipi.TabIndex = 1;
+            this.cmbOdemeTipi.SelectedIndexChanged += new System.EventHandler(this.cmbOdemeTipi_SelectedIndexChanged);
             // 
             // txtTutar
             // 
