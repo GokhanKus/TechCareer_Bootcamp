@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeOrnek", "Attribute
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdemeFormu", "OdemeFormu\OdemeFormu.csproj", "{133B2CB1-B1CB-4E16-ADBD-C8F9BCE213BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numerik.Islemler", "Numerik.Islemler\Numerik.Islemler.csproj", "{EAD58975-4769-4650-8C85-356337BADAAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL_Library_Ornek", "DLL_Library_Ornek\DLL_Library_Ornek.csproj", "{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{133B2CB1-B1CB-4E16-ADBD-C8F9BCE213BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{133B2CB1-B1CB-4E16-ADBD-C8F9BCE213BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{133B2CB1-B1CB-4E16-ADBD-C8F9BCE213BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD58975-4769-4650-8C85-356337BADAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD58975-4769-4650-8C85-356337BADAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD58975-4769-4650-8C85-356337BADAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD58975-4769-4650-8C85-356337BADAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
