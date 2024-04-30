@@ -1,17 +1,22 @@
 using KitapFormu.Entity;
+using KitapFormu.Utilities;
 using Microsoft.Data.SqlClient;
 using System.Data;
 namespace KitapFormu
 {
     public partial class Form1 : Form
     {
-        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=TechCareer; Integrated Security=True;";//SSPI
+        //private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=TechCareer; Integrated Security=True;";//SSPI
+        private readonly SingletonDbConnection _connection;
+        //her metotta SqlConnectiona baglanmak zorunda kalmayalým, singleton ile halledelim.
+
         int secilenYazarId;
         int secilenKategoriId;
         int secilenYayineviId;
         public Form1()
         {
             InitializeComponent();
+            _connection = SingletonDbConnection.GetInstance();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -24,38 +29,35 @@ namespace KitapFormu
         private void YazarlariDoldur()
         {
             List<Yazar> yazarlar = new List<Yazar> { new Yazar { Id = -1, YazarAdSoyad = "yazari belirtiniz" } };
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                _connection.OpenConnection();
+                string query = "select * from Yazar";
+                SqlCommand command = new SqlCommand(query, _connection.Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    conn.Open();
-                    string query = "select * from Yazar";
-                    SqlCommand command = new SqlCommand(query, conn);
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    int id = (int)(reader["Id"]);
+                    string yazarAdSoyad = $"{reader["YazarAdi"]} {reader["YazarSoyadi"]}";
+                    yazarlar.Add(new Yazar
                     {
-                        int id = (int)(reader["Id"]);
-                        string yazarAdSoyad = $"{reader["YazarAdi"]} {reader["YazarSoyadi"]}";
-                        yazarlar.Add(new Yazar
-                        {
-                            Id = id,
-                            YazarAdSoyad = yazarAdSoyad
-                        });
-                    }
-                    cmbYazar.DataSource = yazarlar;
-                    cmbYazar.DisplayMember = "YazarAdSoyad";
-                    cmbYazar.ValueMember = "Id";
-                    reader.Close();
+                        Id = id,
+                        YazarAdSoyad = yazarAdSoyad
+                    });
                 }
+                cmbYazar.DataSource = yazarlar;
+                cmbYazar.DisplayMember = "YazarAdSoyad";
+                cmbYazar.ValueMember = "Id";
+                reader.Close();
+            }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show("bir hata meydana geldi: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+            catch (Exception ex)
+            {
+                MessageBox.Show("bir hata meydana geldi: " + ex.Message);
+            }
+            finally
+            {
+                _connection.CloseConnection();
             }
         }
 
@@ -63,111 +65,102 @@ namespace KitapFormu
         {
             List<Yayinevi> yayineviList = new List<Yayinevi>();
             yayineviList.Add(new Yayinevi { Id = -1, YayineviAdi = "Lutfen yayinevi seciniz" });
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                _connection.OpenConnection();
+                string query = "select * from Yayinevi";
+                SqlCommand command = new SqlCommand(query, _connection.Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    conn.Open();
-                    string query = "select * from Yayinevi";
-                    SqlCommand command = new SqlCommand(query, conn);
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    yayineviList.Add(new Yayinevi
                     {
-                        yayineviList.Add(new Yayinevi
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            YayineviAdi = (string)reader["YayineviAdi"]
-                        });
-                    }
-                    cmbYayinEvi.DataSource = yayineviList;
-                    cmbYayinEvi.DisplayMember = "YayineviAdi";
-                    cmbYayinEvi.ValueMember = "Id";
-                    reader.Close();
+                        Id = Convert.ToInt32(reader["Id"]),
+                        YayineviAdi = (string)reader["YayineviAdi"]
+                    });
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("bir hata olustu " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                cmbYayinEvi.DataSource = yayineviList;
+                cmbYayinEvi.DisplayMember = "YayineviAdi";
+                cmbYayinEvi.ValueMember = "Id";
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("bir hata olustu " + ex.Message);
+            }
+            finally
+            {
+                _connection.CloseConnection();
             }
         }
 
         private void KategorileriDoldur()
         {
             List<Kategori> kategoriler = new List<Kategori> { new Kategori { Id = -1, KategoriAdi = "Lutfen Kategori Seciniz" } };
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                _connection.OpenConnection();
+                string query = "select * from Kategori";
+                SqlCommand command = new SqlCommand(query, _connection.Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    conn.Open();
-                    string query = "select * from Kategori";
-                    SqlCommand command = new SqlCommand(query, conn);
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    kategoriler.Add(new Kategori
                     {
-                        kategoriler.Add(new Kategori
-                        {
-                            Id = (int)reader["Id"],
-                            KategoriAdi = (string)reader["KategoriAdi"]
-                        });
-                    }
-                    cmbKategori.DataSource = kategoriler;
-                    cmbKategori.DisplayMember = "KategoriAdi";
-                    cmbKategori.ValueMember = "Id";
-                    reader.Close();
+                        Id = (int)reader["Id"],
+                        KategoriAdi = (string)reader["KategoriAdi"]
+                    });
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("bir hata meydana geldi: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                cmbKategori.DataSource = kategoriler;
+                cmbKategori.DisplayMember = "KategoriAdi";
+                cmbKategori.ValueMember = "Id";
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("bir hata meydana geldi: " + ex.Message);
+            }
+            finally
+            {
+                _connection.CloseConnection();
             }
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string kitapAdi = txtKitapAdi.Text;
+            decimal kitapFiyat = decimal.Parse(txtFiyat.Text);
+            int sayfaSayisi = int.Parse(txtSayfaSayisi.Text);
+            string query = "INSERT INTO Kitap(KitapAdi, Fiyat, SayfaSayisi, YazarId, KategoriId, YayineviId) " +
+                "VALUES (@KitapAdi, @Fiyat, @SayfaSayisi,@YazarId,@KategoriId,@YayineviId)";
+            try
             {
-                string kitapAdi = txtKitapAdi.Text;
-                decimal kitapFiyat = decimal.Parse(txtFiyat.Text);
-                int sayfaSayisi = int.Parse(txtSayfaSayisi.Text);
-                string query = "INSERT INTO Kitap(KitapAdi, Fiyat, SayfaSayisi, YazarId, KategoriId, YayineviId) " +
-                    "VALUES (@KitapAdi, @Fiyat, @SayfaSayisi,@YazarId,@KategoriId,@YayineviId)";
-                try
+                _connection.OpenConnection();
+                SqlCommand command = new SqlCommand(query, _connection.Connection);
+                command.Parameters.AddWithValue("@KitapAdi", kitapAdi);
+                command.Parameters.AddWithValue("@Fiyat", kitapFiyat);
+                command.Parameters.AddWithValue("@SayfaSayisi", sayfaSayisi);
+                command.Parameters.AddWithValue("@YazarId", secilenYazarId);
+                command.Parameters.AddWithValue("@KategoriId", secilenKategoriId);
+                command.Parameters.AddWithValue("@YayineviId", secilenYayineviId);
+                int etkilenenKayitSayisi = command.ExecuteNonQuery();
+                if (etkilenenKayitSayisi > 0 && secilenYazarId != 0 && secilenKategoriId != 0 && secilenYayineviId != 0)
                 {
-                    conn.Open();
-                    SqlCommand command = new SqlCommand(query, conn);
-                    command.Parameters.AddWithValue("@KitapAdi", kitapAdi);
-                    command.Parameters.AddWithValue("@Fiyat", kitapFiyat);
-                    command.Parameters.AddWithValue("@SayfaSayisi", sayfaSayisi);
-                    command.Parameters.AddWithValue("@YazarId", secilenYazarId);
-                    command.Parameters.AddWithValue("@KategoriId", secilenKategoriId);
-                    command.Parameters.AddWithValue("@YayineviId", secilenYayineviId);
-                    int etkilenenKayitSayisi = command.ExecuteNonQuery();
-                    if (etkilenenKayitSayisi > 0 && secilenYazarId != 0 && secilenKategoriId != 0 && secilenYayineviId != 0)
-                    {
-                        MessageBox.Show("Kayit Eklenmistir");
-                        DataGridViewiDoldur();
-                    }
-                    else
-                    {
-                        MessageBox.Show("secilenYazarId, secilenKategoriId, secilenYayineviId alanlarinin dolu olduguna emin olunuz");
-                    }
+                    MessageBox.Show("Kayit Eklenmistir");
+                    DataGridViewiDoldur();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("bir hata olustu " + ex.Message);
+                    MessageBox.Show("secilenYazarId, secilenKategoriId, secilenYayineviId alanlarinin dolu olduguna emin olunuz");
                 }
-                finally
-                {
-                    conn.Close();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("bir hata olustu " + ex.Message);
+            }
+            finally
+            {
+                _connection.CloseConnection();
             }
         }
 
@@ -209,10 +202,8 @@ namespace KitapFormu
             #region DataSet ile 2.yontem
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"
+                _connection.OpenConnection();
+                string query = @"
                         SELECT K.Id, K.KitapAdi, K.Fiyat, K.SayfaSayisi, 
                                Yazar.YazarAdi, Yazar.YazarSoyadi, 
                                Kategori.KategoriAdi, Yayinevi.YayineviAdi
@@ -222,14 +213,14 @@ namespace KitapFormu
                         INNER JOIN Yayinevi ON K.YayineviId = Yayinevi.Id
                     ";
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataSet dataSet = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter(query, _connection.Connection);
+                DataSet dataSet = new DataSet();
 
-                    adapter.Fill(dataSet, "kitaplar");
+                adapter.Fill(dataSet, "kitaplar");
 
-                    dataGridView1.DataSource = dataSet.Tables["kitaplar"];
-                    conn.Close();
-                }
+                dataGridView1.DataSource = dataSet.Tables["kitaplar"];
+                _connection.CloseConnection();
+
             }
             catch (Exception ex)
             {
@@ -267,29 +258,30 @@ namespace KitapFormu
             {
                 int secilenSatirIndex = dataGridView1.SelectedRows[0].Index; // Seçilen satýrýn indeksi
                 int kitapId = Convert.ToInt32(dataGridView1.Rows[secilenSatirIndex].Cells["Id"].Value); // Seçilen satýrdaki KitapId deðeri
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                string query = "DELETE FROM Kitap WHERE Id = @Id"; // Veritabanýndan silme sorgusu
+                try
                 {
-                    string query = "DELETE FROM Kitap WHERE Id = @Id"; // Veritabanýndan silme sorgusu
-                    try
+                    _connection.OpenConnection();
+                    SqlCommand command = new SqlCommand(query, _connection.Connection);
+                    command.Parameters.AddWithValue("@Id", kitapId);
+                    int etkilenenKayitSayisi = command.ExecuteNonQuery();
+                    if (etkilenenKayitSayisi > 0)
                     {
-                        conn.Open();
-                        SqlCommand command = new SqlCommand(query, conn);
-                        command.Parameters.AddWithValue("@Id", kitapId);
-                        int etkilenenKayitSayisi = command.ExecuteNonQuery();
-                        if (etkilenenKayitSayisi > 0)
-                        {
-                            MessageBox.Show("Kayýt silindi");
-                            DataGridViewiDoldur(); // DataGridView'i yeniden doldur
-                        }
-                        else
-                        {
-                            MessageBox.Show("Kayýt silinemedi");
-                        }
+                        MessageBox.Show("Kayýt silindi");
+                        DataGridViewiDoldur(); // DataGridView'i yeniden doldur
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("Bir hata oluþtu: " + ex.Message);
+                        MessageBox.Show("Kayýt silinemedi");
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluþtu: " + ex.Message);
+                }
+                finally
+                {
+                    _connection.CloseConnection();
                 }
             }
             else
