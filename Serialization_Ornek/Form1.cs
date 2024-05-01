@@ -144,6 +144,11 @@ namespace Serialization_Ornek
                 fileStream.Close();
             }
 
+            #region 2.yol
+            //var jsonString = File.ReadAllText("C:\\ASP.NET_Projects\\TechCareer_Bootcamp\\Serialization_Ornek\\JsonDosyasi\\employee.json");
+            //var emp = JsonConvert.DeserializeObject<Employee>(jsonString); using Newtonsoft.json
+            #endregion
+
         }
     }
 }
