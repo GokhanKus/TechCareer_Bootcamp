@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Numerik.Islemler", "Numerik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL_Library_Ornek", "DLL_Library_Ornek\DLL_Library_Ornek.csproj", "{0D21E665-749A-4C6B-9A59-32D9C6B9FBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitapFormu", "KitapFormu\KitapFormu.csproj", "{F9BB2D9B-AD8E-409F-B551-92ADB002FC10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitapFormu", "KitapFormu\KitapFormu.csproj", "{F9BB2D9B-AD8E-409F-B551-92ADB002FC10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization_Ornek", "Serialization_Ornek\Serialization_Ornek.csproj", "{B4B63211-AA85-4887-9BCE-2999C57FD782}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{F9BB2D9B-AD8E-409F-B551-92ADB002FC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9BB2D9B-AD8E-409F-B551-92ADB002FC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9BB2D9B-AD8E-409F-B551-92ADB002FC10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B63211-AA85-4887-9BCE-2999C57FD782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B63211-AA85-4887-9BCE-2999C57FD782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B63211-AA85-4887-9BCE-2999C57FD782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B63211-AA85-4887-9BCE-2999C57FD782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
