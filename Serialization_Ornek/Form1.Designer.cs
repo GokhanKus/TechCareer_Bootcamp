@@ -153,6 +153,7 @@
             btnJsonSerialized.TabIndex = 3;
             btnJsonSerialized.Text = "JsonSerialized";
             btnJsonSerialized.UseVisualStyleBackColor = true;
+            btnJsonSerialized.Click += btnJsonSerialized_Click;
             // 
             // btnJsonDeserialized
             // 
@@ -162,6 +163,7 @@
             btnJsonDeserialized.TabIndex = 3;
             btnJsonDeserialized.Text = "JsonDeserialized";
             btnJsonDeserialized.UseVisualStyleBackColor = true;
+            btnJsonDeserialized.Click += btnJsonDeserialized_Click;
             // 
             // lblSonuc
             // 

@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="JsonDosyasi\" />
     <Folder Include="XmlDosyasi\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
