@@ -13,9 +13,13 @@ public partial class Kitap
 
     public int? SayfaSayisi { get; set; }
 
+    // scaffolding yaparken -otomatik olustururken dbcontext ve modelleri one to many icin sadece foreign key atadı, navigation propları olusturmamisti, duzenlendi.
     public int? YazarId { get; set; }
+    public Yazar Yazar { get; set; }
 
     public int? KategoriId { get; set; }
+    public Kategori Kategori { get; set; }
 
     public int? YayineviId { get; set; }
+    public Yayinevi Yayinevi { get; set; }
 }
