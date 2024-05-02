@@ -18,10 +18,13 @@ namespace WebMvcBooks.Controllers
                 {
                     string jsonBooks = await response.Content.ReadAsStringAsync();
                     books = JsonConvert.DeserializeObject<List<Book>>(jsonBooks);
-                }
-            }
+					//books = JsonSerializer.Deserialize<List<Book>>(apiResponse); //using System.Text.Json;
+				}
+			}
             return View(books); //sag click ile add view diyip razor view ile otomatik viewi olusturalim
         }
+
+        //tiklanilan kitabi api aracigiliyla sayfaya getiriyoruz
         public async Task<IActionResult> EditBook(int id)
         {
             var book = new Book();
@@ -36,6 +39,7 @@ namespace WebMvcBooks.Controllers
             return View(book);
         }
 
+        //ve guncelleme islemini api'ye gonderiyoruz api'de guncelleniyor.
         [HttpPost]
         public async Task<IActionResult> EditBook(Book book)
         {
