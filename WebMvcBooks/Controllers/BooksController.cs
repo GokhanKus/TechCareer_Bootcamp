@@ -10,7 +10,7 @@ namespace WebMvcBooks.Controllers
 		//WebApiBooks projemiz bu url uzerinden calisiyor: http://localhost:25917/api/Books ve apideki verileri sayfamizda goruntuleyelim
 		private string booksUrl = "http://localhost:25917/api/Books";
 		private string rootUrl = "http://localhost:25917/";
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> GetAllBooks()
 		{
 			var books = new List<Book>();
 			using (var httpClient = new HttpClient())
@@ -23,6 +23,22 @@ namespace WebMvcBooks.Controllers
 				}
 			}
 			return View(books); //sag click ile add view diyip razor view ile otomatik viewi olusturalim
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetBook(int id)
+		{
+			var book = new Book();
+			using (var httpClient = new HttpClient())
+			{
+				//using (var response = await httpClient.GetAsync($"{booksUrl}/{id}")) //boyle de yazilabilir
+				//{
+				//	string jsonBook = await response.Content.ReadAsStringAsync();
+				//	book = JsonConvert.DeserializeObject<Book>(jsonBook);
+				//}
+				book = await httpClient.GetFromJsonAsync($"{booksUrl}/{id}", typeof(Book)) as Book; //kisa yazim sekli GetFromJsonAsync() asp.net core 5.0'dan sonra kullanima sunuldu
+			}
+			return View(book);
 		}
 
 		//tiklanilan kitabi api aracigiliyla sayfaya getiriyoruz
