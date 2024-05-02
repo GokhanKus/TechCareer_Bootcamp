@@ -35,7 +35,7 @@ namespace WebAPIBooks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Book book)
+        public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
