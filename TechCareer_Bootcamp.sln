@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitapFormu", "KitapFormu\Ki
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization_Ornek", "Serialization_Ornek\Serialization_Ornek.csproj", "{B4B63211-AA85-4887-9BCE-2999C57FD782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIBooks", "WebAPIBooks\WebAPIBooks.csproj", "{05EDB867-3284-444D-B68B-88488784CDCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIBooks", "WebAPIBooks\WebAPIBooks.csproj", "{05EDB867-3284-444D-B68B-88488784CDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvcBooks", "WebMvcBooks\WebMvcBooks.csproj", "{3F31C78B-4E95-4745-BC62-2ED551BC4E3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{05EDB867-3284-444D-B68B-88488784CDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05EDB867-3284-444D-B68B-88488784CDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05EDB867-3284-444D-B68B-88488784CDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F31C78B-4E95-4745-BC62-2ED551BC4E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F31C78B-4E95-4745-BC62-2ED551BC4E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F31C78B-4E95-4745-BC62-2ED551BC4E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F31C78B-4E95-4745-BC62-2ED551BC4E3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
