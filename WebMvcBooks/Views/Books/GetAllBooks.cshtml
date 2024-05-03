@@ -45,8 +45,8 @@
 				</td>
 				<td>
 					@Html.ActionLink("Edit", "EditBook", new { id = item.Id }) | @*href... ilk prmtre gorunen adi, 2.si action metot adi, 3. su route value*@
-					@Html.ActionLink("Details", "GetBook", new { id=item.Id }) |
-					@Html.ActionLink("Delete", "DeleteBook", new { id=item.Id })
+					@Html.ActionLink("Details", "GetBook", new { id = item.Id }) |
+					@Html.ActionLink("Delete", "DeleteBook", new { id = item.Id }, new { onclick = "return confirm('Silmek istediğinizden emin misiniz?');" })
 				</td>
 			</tr>
 		}
