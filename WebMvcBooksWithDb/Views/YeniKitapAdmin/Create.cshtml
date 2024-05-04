@@ -1,0 +1,77 @@
+﻿@model WebMvcBooksWithDb.ViewModelsForBook.YeniKitapViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+
+<hr />
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Yeni Kitap Ekle</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="row">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="KitapAdi" class="control-label"></label>
+                        <input asp-for="KitapAdi" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SayfaSayisi" class="control-label"></label>
+                        <input asp-for="SayfaSayisi" class="form-control" />
+                    </div>
+                </div>              
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Fiyat" class="control-label"></label>
+                        <input asp-for="Fiyat" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="KitapResimFile" class="control-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="KitapResimFile" class="custom-file-input" />
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="YayinlanmaTarihi" class="control-label"></label>
+                        <input asp-for="YayinlanmaTarihi" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <br />
+
+
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye Dön</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
