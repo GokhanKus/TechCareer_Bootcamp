@@ -1,15 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebMvcBooksWithDb.Models
+namespace WebMvcBooksWithDb.ViewModelsForBook
 {
-	public class YeniKitap
+	public class YeniKitapViewModel: EditImageViewModel
 	{
-		//[Key]
-		public int Id { get; set; }
+		[Required]
 		public string KitapAdi { get; set; }
+		[Required]
 		public double Fiyat { get; set; }
+		[Required]
 		public int SayfaSayisi { get; set; }
+		[Required]
 		public int YayinlanmaTarihi { get; set; }
-		public string KitapResmi{ get; set; }
+		[Required]
+		public string KitapResmiUrl { get; set; }
 	}
 }

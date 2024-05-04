@@ -1,0 +1,51 @@
+﻿@model WebMvcBooksWithDb.Models.YeniKitap
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Yeni Kitap Detay</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KitapAdi)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KitapAdi)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SayfaSayisi)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SayfaSayisi)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KitapResmi)
+        </dt>
+        <dd>
+            <div class="card" style="width:10rem;">
+            <img src="~/Uploads/@Model.KitapResmi" class="card-img-top" width="100" asp-append-version="true">
+
+            </div>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.YayinlanmaTarihi)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.YayinlanmaTarihi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="YeniKitapAdmin" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Listeye Dön</a>
+</div>
