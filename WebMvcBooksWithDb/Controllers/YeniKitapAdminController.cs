@@ -107,13 +107,11 @@ namespace WebMvcBooksWithDb.Controllers
         {
             var kitap = await _context.YeniKitap.FindAsync(model.Id);
             
-            //düzenleme sayfasında bir başka resim seçtiysem kontrolünü yapmam gerekiyro
             if (model.KitapResimFile != null)
             {
-                //resmini değiştirmek istediğim ürünün database deki kitapResim kolonundaki adına göre
-                // git wwwroot klasörü altındaki Uploads klasöründeki ilgili resmi bul ve sil
-                string filePath = Path.Combine(_environment.WebRootPath, "Uploads", kitap.KitapResmi);
-                System.IO.File.Delete(filePath);
+                //resmi guncellerken oncekini siliyor; ancak aynı resim bir baska kitabin da resmiyse onu da siliyor (veri kaybi)
+                //string filePath = Path.Combine(_environment.WebRootPath, "Uploads", kitap.KitapResmi);
+                //System.IO.File.Delete(filePath); 
 
                 kitap.KitapAdi = model.KitapAdi;
                 kitap.Fiyat = model.Fiyat; 
@@ -121,29 +119,16 @@ namespace WebMvcBooksWithDb.Controllers
                 kitap.SayfaSayisi = model.SayfaSayisi;
                 string guncellenenYuklenenResimAdi = ResimYukle(model); //=model.KitapResimFile.FileName
                 kitap.KitapResmi = guncellenenYuklenenResimAdi;
-
-                //YeniKitap guncellencekKitap = new YeniKitap();
-                ////guncellencekKitap.Id = model.Id;
-                //guncellencekKitap.Fiyat = model.Fiyat;
-                //guncellencekKitap.YayinlanmaTarihi = model.YayinlanmaTarihi;
-                //guncellencekKitap.SayfaSayisi = model.SayfaSayisi;
-                //string guncellenenYuklenenResimAdi = ResimYukle(model);
-                //guncellencekKitap.KitapAdi = model.KitapAdi;
-                //guncellencekKitap.KitapResmi = guncellenenYuklenenResimAdi;
-
-                _context.Entry(kitap).State = EntityState.Modified;
-                //_context.YeniKitap.Update(guncellencekKitap);
+               
+                _context.YeniKitap.Update(kitap); //_context.Entry(kitap).State = EntityState.Modified;
                 try
                 {
                     await _context.SaveChangesAsync(); //update 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString()
-                        );
+                    return BadRequest(ex.Message);
                 }
-
-
             }
             return RedirectToAction("Index");
         }
